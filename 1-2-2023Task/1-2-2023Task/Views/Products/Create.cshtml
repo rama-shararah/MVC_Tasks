@@ -14,37 +14,53 @@
         <h4>Product</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="ProductName">Product Name</label>
+        @*@Html.LabelFor(model => model.ProductName, "Product Name", htmlAttributes: new { @class = "control-label col-md-2" })*@
+    <div class="col-md-10">
+        <input class="form-control text-box single-line" id="ProductName" name="ProductName" type="text" value="" />
+        @*@Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })*@
+        <span class="field-validation-valid text-danger" data-valmsg-for="ProductName" data-valmsg-replace="true"></span>
+        @*@Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })*@
+    </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CategoryFK, "CategoryFK", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CategoryFK", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CategoryFK, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="CategoryFK">Category</label>
+        @*@Html.LabelFor(model => model.CategoryFK, "Category", htmlAttributes: new { @class = "control-label col-md-2" })*@
+    <div class="col-md-10">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Stock, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Stock, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Stock, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <select class="form-control" id="CategoryFK" name="CategoryFK">
+            <option value="2">Fruit</option>
+            <option value="3">Vegetables</option>
+        </select>
+        <span class="field-validation-valid text-danger" data-valmsg-for="CategoryFK" data-valmsg-replace="true"></span>
+        @*@Html.DropDownList("CategoryFK", null, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CategoryFK, "", new { @class = "text-danger" })*@
+    </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.UnitPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UnitPrice, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UnitPrice, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Stock">Stock</label>
+        @*@Html.LabelFor(model => model.Stock,  htmlAttributes: new { @class = "control-label col-md-2" })*@
+    <div class="col-md-10">
+        <input class="form-control text-box single-line" data-val="true" data-val-number="The field Stock must be a number." id="Stock" name="Stock" type="number" value="" />
+        <span class="field-validation-valid text-danger" data-valmsg-for="Stock" data-valmsg-replace="true"></span>
+        @*@Html.EditorFor(model => model.Stock, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Stock, "", new { @class = "text-danger" })*@
+    </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="UnitPrice">Unit Price</label>
+        @*@Html.LabelFor(model => model.UnitPrice, "Unit Price", htmlAttributes: new { @class = "control-label col-md-2" })*@
+    <div class="col-md-10">
+        <input class="form-control text-box single-line" data-val="true" data-val-number="The field UnitPrice must be a number." id="UnitPrice" name="UnitPrice" type="number" value="" />
+        <span class="field-validation-valid text-danger" data-valmsg-for="UnitPrice" data-valmsg-replace="true"></span>
+        @*@Html.EditorFor(model => model.UnitPrice, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.UnitPrice, "", new { @class = "text-danger" })*@
+    </div>
+    </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
