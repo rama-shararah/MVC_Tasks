@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Employeees">
           <Key>
             <PropertyRef Name="ID" />
@@ -17,12 +17,13 @@
           <Property Name="Age" Type="int" />
           <Property Name="Job_Title" Type="varchar" MaxLength="255" />
           <Property Name="Gender" Type="bit" />
+          <Property Name="Photo" Type="varchar" MaxLength="255" />
+          <Property Name="CV" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Employeees" EntityType="Self.Employeees" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -38,6 +39,8 @@
           <Property Name="Age" Type="Int32" />
           <Property Name="Job_Title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Gender" Type="Boolean" />
+          <Property Name="Photo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CV" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="AEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Employeees" EntityType="Self.Employeee" />
@@ -51,6 +54,8 @@
           <EntitySetMapping Name="Employeees">
             <EntityTypeMapping TypeName="Model.Employeee">
               <MappingFragment StoreEntitySet="Employeees">
+                <ScalarProperty Name="CV" ColumnName="CV" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="First_Name" ColumnName="First_Name" />
                 <ScalarProperty Name="Last_Nama" ColumnName="Last_Nama" />

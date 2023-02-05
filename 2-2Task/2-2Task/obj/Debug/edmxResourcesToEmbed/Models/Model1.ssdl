@@ -12,6 +12,8 @@
     <Property Name="Age" Type="int" />
     <Property Name="Job_Title" Type="varchar" MaxLength="255" />
     <Property Name="Gender" Type="bit" />
+    <Property Name="Photo" Type="varchar" MaxLength="255" />
+    <Property Name="CV" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="Employeees" EntityType="Self.Employeees" Schema="dbo" store:Type="Tables" />

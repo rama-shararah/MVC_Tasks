@@ -11,7 +11,8 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.First_Name)
+            First Name
+            @*@Html.DisplayNameFor(model => model.First_Name)*@
         </dt>
 
         <dd>
@@ -19,7 +20,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Last_Nama)
+            Last Name
+            @*@Html.DisplayNameFor(model => model.Last_Nama)*@
         </dt>
 
         <dd>
@@ -51,7 +53,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Job_Title)
+            Job Title
+            @*@Html.DisplayNameFor(model => model.Job_Title)*@
         </dt>
 
         <dd>
@@ -73,7 +76,24 @@
             }
             @*@Html.DisplayFor(model => model.Gender)*@
         </dd>
+        <dt>
 
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+        <dd>
+            <img src="~/pic/@Model.Photo" width="50" />
+            @*@Html.DisplayFor(model => model.Photo)*@
+        </dd>
+
+
+        <dt>
+
+            @Html.DisplayNameFor(model => model.CV)
+        </dt>
+        <dd>
+            <a href="~/pdf/@Model.CV" download>CV</a>
+            @*@Html.DisplayFor(model => model.CV)*@
+        </dd>
     </dl>
 </div>
 <p>

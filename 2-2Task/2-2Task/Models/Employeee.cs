@@ -15,7 +15,6 @@ namespace _2_2Task.Models
 
     public partial class Employeee
     {
-
         public int ID { get; set; }
         [Required]
         [StringLength(12, ErrorMessage = "The {0} must be between {2} - {1} characters long.", MinimumLength = 1)]
@@ -36,5 +35,7 @@ namespace _2_2Task.Models
         public string Job_Title { get; set; }
         [Required]
         public Nullable<bool> Gender { get; set; }
+        public string Photo { get; set; }
+        public string CV { get; set; }
     }
 }

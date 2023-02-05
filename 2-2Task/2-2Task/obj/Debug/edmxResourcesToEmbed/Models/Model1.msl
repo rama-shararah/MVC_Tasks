@@ -4,6 +4,8 @@
     <EntitySetMapping Name="Employeees">
       <EntityTypeMapping TypeName="Model.Employeee">
         <MappingFragment StoreEntitySet="Employeees">
+          <ScalarProperty Name="CV" ColumnName="CV" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="First_Name" ColumnName="First_Name" />
           <ScalarProperty Name="Last_Nama" ColumnName="Last_Nama" />

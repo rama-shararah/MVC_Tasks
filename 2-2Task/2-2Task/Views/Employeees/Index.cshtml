@@ -9,73 +9,99 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            First Name
-            @*@Html.DisplayNameFor(model => model.First_Name)*@
-        </th>
-        <th>
-            Last Name
-            @*@Html.DisplayNameFor(model => model.Last_Nama)*@
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Age)
-        </th>
-        <th>
-            Job Title
-            @*@Html.DisplayNameFor(model => model.Job_Title)*@
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Gender)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.First_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Last_Nama)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Age)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Job_Title)
-        </td>
-        <td>
-            @if (item.Gender == true)
-            {
-                <span>Female</span>
-            }
-            else
-            {
-                <span>Male</span>
-            }
+@using (Html.BeginForm("Index", "Employeees", FormMethod.Get))
+{
+    <b>Search option:</b>
+    @Html.RadioButton("searchby", "First_Name",true)<text>First Name</text>
+    @Html.RadioButton("searchby", "Last_Nama", true)<text>Last Name</text>
+    @Html.RadioButton("searchby", "Email", true)<text>Email</text><br />
+    @Html.TextBox("search")
+    <input id="Button1" type="submit" value="search" />
+    }
+    <br />
+    <table class="table">
+        <tr>
+            <th>
+                First Name
+                @*@Html.DisplayNameFor(model => model.First_Name)*@
+            </th>
+            <th>
+                Last Name
+                @*@Html.DisplayNameFor(model => model.Last_Nama)*@
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                Job Title
+                @*@Html.DisplayNameFor(model => model.Job_Title)*@
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Photo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CV)
+            </th>
+            <th></th>
+        </tr>
 
-            @*@Html.DisplayFor(modelItem => item.Gender)*@
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.First_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Last_Nama)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Job_Title)
+                </td>
+                <td>
+                    @if (item.Gender == true)
+                    {
+                        <span>Female</span>
+                    }
+                    else
+                    {
+                        <span>Male</span>
+                    }
 
-</table>
+                    @*@Html.DisplayFor(modelItem => item.Gender)*@
+                </td>
+                <td>
+                    <img src="~/pic/@item.Photo" width="50" />
+                    @*@Html.DisplayFor(modelItem => item.Photo)*@
+                </td>
+                <td>
+                    <a href="~/pdf/@item.CV" download>CV</a>
+                    @*@Html.DisplayFor(modelItem => item.CV)*@
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
