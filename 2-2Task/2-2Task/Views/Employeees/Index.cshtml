@@ -5,7 +5,12 @@
 }
 
 <h2>Index</h2>
-
+<style>
+    .form-control{
+        width:200px !important;
+        display:inline-block;
+    }
+</style>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -16,11 +21,11 @@
     @Html.RadioButton("searchby", "First_Name",true)<text>First Name</text>
     @Html.RadioButton("searchby", "Last_Nama", true)<text>Last Name</text>
     @Html.RadioButton("searchby", "Email", true)<text>Email</text><br />
-    @Html.TextBox("search")
-    <input id="Button1" type="submit" value="search" />
+    @Html.TextBox("search","", new {@class= "form-control" })
+    <input id="Button1" type="submit" value="search"  class="btn"/>
     }
     <br />
-    <table class="table">
+    <table class="table table-hover">
         <tr>
             <th>
                 First Name

@@ -78,7 +78,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <input  type="file" class="form-control" name="pic"   accept="image/*" />
+            <input  type="file" class="form-control" required name="pic"   accept="image/*" />
             @*@Html.EditorFor(model => model.Photo, new { htmlAttributes = new { @class = "form-control" } })*@
             @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
         </div>
@@ -87,7 +87,7 @@
 
         @Html.LabelFor(model => model.CV, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <input type="file" class="form-control" name="file" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+            <input type="file" class="form-control" required name="file" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
             @*@Html.EditorFor(model => model.CV, new { htmlAttributes = new { @class = "form-control" } })*@
             @Html.ValidationMessageFor(model => model.CV, "", new { @class = "text-danger" })
         </div>

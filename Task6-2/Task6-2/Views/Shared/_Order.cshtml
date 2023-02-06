@@ -1,0 +1,11 @@
+﻿@model Task6_2.Models.Order
+
+@{ 
+    DateTime date = Convert.ToDateTime(Model.Order_Date);
+    string d = date.ToString("dd/MM/yyyy hh:mm:ss");
+}
+
+<h3>Last Order:</h3>
+<h4>Order ID: @Model.Order_ID</h4>
+<h4>Order Date: @d</h4>
+
