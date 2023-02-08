@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VisionCinemaModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="First_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="Feedbacks" Relationship="Self.FK__Feedback__userId__5070F446" FromRole="AspNetUsers" ToRole="Feedback" />
+    <NavigationProperty Name="Tickets" Relationship="Self.FK__Tickets__userId__5535A963" FromRole="AspNetUsers" ToRole="Tickets" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="Feedback">
+    <Key>
+      <PropertyRef Name="FeedBack_id" />
+    </Key>
+    <Property Name="FeedBack_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="approve" Type="Boolean" />
+    <Property Name="userId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="img" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK__Feedback__userId__5070F446" FromRole="Feedback" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="Movy">
+    <Key>
+      <PropertyRef Name="Movie_Id" />
+    </Key>
+    <Property Name="Movie_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Movie_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Duration" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Release_Date" Type="DateTime" Precision="3" />
+    <Property Name="genre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Trailer" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Movie_Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Shows" Relationship="Self.FK__Shows__Movie_id__48CFD27E" FromRole="Movies" ToRole="Shows" />
+  </EntityType>
+  <EntityType Name="Show_Seats">
+    <Key>
+      <PropertyRef Name="Show_Seat_id" />
+    </Key>
+    <Property Name="Show_Seat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Show_id" Type="Int32" />
+    <Property Name="CinemaSeatid" Type="Int32" />
+    <Property Name="Ticket_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Show" Relationship="Self.FK__Show_Seat__Show___4F7CD00D" FromRole="Show_Seats" ToRole="Shows" />
+    <NavigationProperty Name="Ticket" Relationship="Self.FK__Show_Seat__Ticke__52593CB8" FromRole="Show_Seats" ToRole="Tickets" />
+  </EntityType>
+  <EntityType Name="Show">
+    <Key>
+      <PropertyRef Name="Show_id" />
+    </Key>
+    <Property Name="Show_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Show_Date" Type="DateTime" Precision="3" />
+    <Property Name="Show_Start_Date" Type="Time" Precision="0" />
+    <Property Name="Show_End_Date" Type="Time" Precision="0" />
+    <Property Name="Movie_id" Type="Int32" />
+    <NavigationProperty Name="Movy" Relationship="Self.FK__Shows__Movie_id__48CFD27E" FromRole="Shows" ToRole="Movies" />
+    <NavigationProperty Name="Show_Seats" Relationship="Self.FK__Show_Seat__Show___4F7CD00D" FromRole="Shows" ToRole="Show_Seats" />
+    <NavigationProperty Name="Tickets" Relationship="Self.FK__Tickets__Show_id__4BAC3F29" FromRole="Shows" ToRole="Tickets" />
+  </EntityType>
+  <EntityType Name="suggestion1">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="moviename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="movie_history" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="movie_type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="siggestion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Ticket">
+    <Key>
+      <PropertyRef Name="Ticket_id" />
+    </Key>
+    <Property Name="Ticket_id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Ticket_Date" Type="DateTime" Precision="3" />
+    <Property Name="Show_id" Type="Int32" />
+    <Property Name="userId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK__Tickets__userId__5535A963" FromRole="Tickets" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Show_Seats" Relationship="Self.FK__Show_Seat__Ticke__52593CB8" FromRole="Tickets" ToRole="Show_Seats" />
+    <NavigationProperty Name="Show" Relationship="Self.FK__Tickets__Show_id__4BAC3F29" FromRole="Tickets" ToRole="Shows" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Feedback__userId__5070F446">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+    <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Feedback">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tickets__userId__5535A963">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+    <End Role="Tickets" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tickets">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Shows__Movie_id__48CFD27E">
+    <End Role="Movies" Type="Self.Movy" Multiplicity="0..1" />
+    <End Role="Shows" Type="Self.Show" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="Movie_Id" />
+      </Principal>
+      <Dependent Role="Shows">
+        <PropertyRef Name="Movie_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Show_Seat__Show___4F7CD00D">
+    <End Role="Shows" Type="Self.Show" Multiplicity="0..1" />
+    <End Role="Show_Seats" Type="Self.Show_Seats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shows">
+        <PropertyRef Name="Show_id" />
+      </Principal>
+      <Dependent Role="Show_Seats">
+        <PropertyRef Name="Show_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Show_Seat__Ticke__52593CB8">
+    <End Role="Tickets" Type="Self.Ticket" Multiplicity="0..1" />
+    <End Role="Show_Seats" Type="Self.Show_Seats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tickets">
+        <PropertyRef Name="Ticket_id" />
+      </Principal>
+      <Dependent Role="Show_Seats">
+        <PropertyRef Name="Ticket_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tickets__Show_id__4BAC3F29">
+    <End Role="Shows" Type="Self.Show" Multiplicity="0..1" />
+    <End Role="Tickets" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shows">
+        <PropertyRef Name="Show_id" />
+      </Principal>
+      <Dependent Role="Tickets">
+        <PropertyRef Name="Show_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="VisionCinemaEntities11" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
+    <EntitySet Name="Movies" EntityType="Self.Movy" />
+    <EntitySet Name="Show_Seats" EntityType="Self.Show_Seats" />
+    <EntitySet Name="Shows" EntityType="Self.Show" />
+    <EntitySet Name="suggestion1" EntityType="Self.suggestion1" />
+    <EntitySet Name="Tickets" EntityType="Self.Ticket" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Feedback__userId__5070F446" Association="Self.FK__Feedback__userId__5070F446">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Feedback" EntitySet="Feedbacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tickets__userId__5535A963" Association="Self.FK__Tickets__userId__5535A963">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Tickets" EntitySet="Tickets" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Shows__Movie_id__48CFD27E" Association="Self.FK__Shows__Movie_id__48CFD27E">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="Shows" EntitySet="Shows" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Show_Seat__Show___4F7CD00D" Association="Self.FK__Show_Seat__Show___4F7CD00D">
+      <End Role="Shows" EntitySet="Shows" />
+      <End Role="Show_Seats" EntitySet="Show_Seats" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Show_Seat__Ticke__52593CB8" Association="Self.FK__Show_Seat__Ticke__52593CB8">
+      <End Role="Tickets" EntitySet="Tickets" />
+      <End Role="Show_Seats" EntitySet="Show_Seats" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tickets__Show_id__4BAC3F29" Association="Self.FK__Tickets__Show_id__4BAC3F29">
+      <End Role="Shows" EntitySet="Shows" />
+      <End Role="Tickets" EntitySet="Tickets" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
