@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cours">
+    <Key>
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="CourseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Student_Customer" Relationship="Self.FK_Student_Customer_Courses" FromRole="Courses" ToRole="Student_Customer" />
+  </EntityType>
+  <EntityType Name="Student_Customer">
+    <Key>
+      <PropertyRef Name="StudentId" />
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="StudentId" Type="Int32" Nullable="false" />
+    <Property Name="CourseId" Type="Int32" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cours" Relationship="Self.FK_Student_Customer_Courses" FromRole="Student_Customer" ToRole="Courses" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Student_Customer_Students" FromRole="Student_Customer" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentId" />
+    </Key>
+    <Property Name="StudentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Age" Type="Int32" />
+    <NavigationProperty Name="Student_Customer" Relationship="Self.FK_Student_Customer_Students" FromRole="Students" ToRole="Student_Customer" />
+  </EntityType>
+  <Association Name="FK_Student_Customer_Courses">
+    <End Role="Courses" Type="Self.Cours" Multiplicity="1" />
+    <End Role="Student_Customer" Type="Self.Student_Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="Student_Customer">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Customer_Students">
+    <End Role="Students" Type="Self.Student" Multiplicity="1" />
+    <End Role="Student_Customer" Type="Self.Student_Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="Student_Customer">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Courses" EntityType="Self.Cours" />
+    <EntitySet Name="Student_Customer" EntityType="Self.Student_Customer" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <AssociationSet Name="FK_Student_Customer_Courses" Association="Self.FK_Student_Customer_Courses">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Student_Customer" EntitySet="Student_Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Customer_Students" Association="Self.FK_Student_Customer_Students">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="Student_Customer" EntitySet="Student_Customer" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
