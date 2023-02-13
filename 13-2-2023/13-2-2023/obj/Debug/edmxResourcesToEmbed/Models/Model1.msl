@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="facultiesTaskModelStoreContainer" CdmEntityContainer="facultiesTaskEntities">
+    <EntitySetMapping Name="Faculties">
+      <EntityTypeMapping TypeName="facultiesTaskModel.Faculty">
+        <MappingFragment StoreEntitySet="Faculties">
+          <ScalarProperty Name="Faculties_Id" ColumnName="Faculties_Id" />
+          <ScalarProperty Name="Faculties_Name" ColumnName="Faculties_Name" />
+          <ScalarProperty Name="Faculties_Photo" ColumnName="Faculties_Photo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Majors">
+      <EntityTypeMapping TypeName="facultiesTaskModel.Major">
+        <MappingFragment StoreEntitySet="Majors">
+          <ScalarProperty Name="Major_Id" ColumnName="Major_Id" />
+          <ScalarProperty Name="Major_Name" ColumnName="Major_Name" />
+          <ScalarProperty Name="Major_Description" ColumnName="Major_Description" />
+          <ScalarProperty Name="Faculties_Id" ColumnName="Faculties_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
